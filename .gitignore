@@ -1,0 +1,11 @@
+/.venv
+/README.md
+/__pycache__
+/database.py
+/repository.py
+/requirements.txt
+/services.py
+/static
+/studyspark.db
+/templates
+/tests
