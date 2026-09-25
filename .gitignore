@@ -1,11 +1,7 @@
 /.venv
-README.md
+
 /__pycache__
-database.py
-repository.py
-requirements.txt
-services.py
-static
+
 /studyspark.db
-templates
-tests
+/.DS_Store
+tests/__pycache__/test.cpython-313.pyc
