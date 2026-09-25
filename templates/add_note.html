@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Note | StudySpark
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <p class="eyebrow">
+        NEW STUDY MATERIAL
+    </p>
+
+    <h1>Create a study note</h1>
+
+    <p>
+        Save important material by subject so that it can
+        be found again quickly.
+    </p>
+
+    <form
+        class="study-form"
+        method="POST"
+    >
+
+        <label for="title">
+            Note title
+        </label>
+
+        <input
+            id="title"
+            name="title"
+            maxlength="100"
+            required
+        >
+
+        <label for="subject">
+            Subject
+        </label>
+
+        <input
+            id="subject"
+            name="subject"
+            required
+        >
+
+        <label for="content">
+            Study content
+        </label>
+
+        <textarea
+            id="content"
+            name="content"
+            rows="10"
+            required
+        ></textarea>
+
+        <div class="button-row">
+
+            <button
+                class="button"
+                type="submit"
+            >
+                Save note
+            </button>
+
+            <a
+                class="button secondary"
+                href="{{ url_for('notes') }}"
+            >
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

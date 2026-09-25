@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}
+Flashcards | StudySpark
+{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+
+    <div>
+        <p class="eyebrow">ACTIVE RECALL</p>
+        <h1>Flashcards</h1>
+    </div>
+
+    <a
+        class="button"
+        href="{{ url_for('add_flashcard') }}"
+    >
+        + New flashcard
+    </a>
+
+</div>
+
+{% if flashcards %}
+
+    <div class="flashcard-grid">
+
+        {% for card in flashcards %}
+
+            <article class="flashcard">
+
+                <span class="tag">
+                    {{ card.subject }}
+                </span>
+
+                <p class="small-label">
+                    QUESTION
+                </p>
+
+                <h2>
+                    {{ card.question }}
+                </h2>
+
+                <details>
+
+                    <summary>
+                        Reveal answer
+                    </summary>
+
+                    <p>
+                        {{ card.answer }}
+                    </p>
+
+                </details>
+
+                <div class="confidence">
+
+                    <p>
+                        How confident are you?
+                    </p>
+
+                    <form
+                        method="POST"
+                        action="{{ url_for(
+                            'update_confidence',
+                            flashcard_id=card.id
+                        ) }}"
+                    >
+
+                        <button
+                            name="confidence"
+                            value="1"
+                            type="submit"
+                        >
+                            1
+                        </button>
+
+                        <button
+                            name="confidence"
+                            value="2"
+                            type="submit"
+                        >
+                            2
+                        </button>
+
+                        <button
+                            name="confidence"
+                            value="3"
+                            type="submit"
+                        >
+                            3
+                        </button>
+
+                    </form>
+
+                    {% if card.confidence %}
+
+                        <p class="rating">
+                            Current confidence:
+                            {{ card.confidence }}/3
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'delete_flashcard',
+                        flashcard_id=card.id
+                    ) }}"
+                >
+
+                    <button
+                        class="delete-button"
+                        type="submit"
+                    >
+                        Delete
+                    </button>
+
+                </form>
+
+            </article>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty-state">
+
+        <h2>No flashcards yet</h2>
+
+        <p>
+            Create a flashcard to start active recall.
+        </p>
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Flashcard | StudySpark
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <p class="eyebrow">
+        ACTIVE RECALL
+    </p>
+
+    <h1>Create a flashcard</h1>
+
+    <p>
+        Convert key information into a question and answer.
+    </p>
+
+    <form
+        class="study-form"
+        method="POST"
+    >
+
+        <label for="subject">
+            Subject
+        </label>
+
+        <input
+            id="subject"
+            name="subject"
+            required
+        >
+
+        <label for="question">
+            Question
+        </label>
+
+        <textarea
+            id="question"
+            name="question"
+            rows="4"
+            required
+        ></textarea>
+
+        <label for="answer">
+            Answer
+        </label>
+
+        <textarea
+            id="answer"
+            name="answer"
+            rows="6"
+            required
+        ></textarea>
+
+        <div class="button-row">
+
+            <button
+                class="button"
+                type="submit"
+            >
+                Create flashcard
+            </button>
+
+            <a
+                class="button secondary"
+                href="{{ url_for('flashcards') }}"
+            >
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
