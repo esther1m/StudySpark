@@ -1,3 +1,5 @@
+# Business logic layer
+# Handles validation and application rules before data is passed to the repository layer
 class StudyService:
 
     def __init__(self, repository):
@@ -19,6 +21,7 @@ class StudyService:
         subject = subject.strip()
         content = content.strip()
 
+        # Validate user input in the business layer before it reaches the database layer.
         if not title:
             return False, "A note title is required."
 

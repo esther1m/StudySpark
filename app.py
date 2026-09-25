@@ -1,3 +1,6 @@
+# Presentation layer
+# Defines the Flask routes and handles requests between the user interface and the business logic layer
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 from database import initialise_database

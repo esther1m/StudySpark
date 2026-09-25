@@ -1,6 +1,7 @@
+# Data access layer
+# Handles database operations for notes and flashcards using parameterised SQL queries
+
 from database import get_connection
-
-
 class StudyRepository:
 
     def __init__(self, database_path):
@@ -24,6 +25,7 @@ class StudyRepository:
     def search_notes(self, search_term):
         connection = get_connection(self.database_path)
 
+        # Use parameterised queries so user input is not directlyinserted into the SQL statement
         search_pattern = f"%{search_term}%"
 
         notes = connection.execute(

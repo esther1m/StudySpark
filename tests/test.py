@@ -41,7 +41,7 @@ class StudySparkTestCase(unittest.TestCase):
             b"StudySpark",
             response.data
         )
-
+# Check that an empty title is rejected by the business-layer validation.
     def test_note_create_and_validation(self):
         invalid_response = self.client.post(
             "/notes/add",
@@ -57,7 +57,7 @@ class StudySparkTestCase(unittest.TestCase):
             b"A note title is required.",
             invalid_response.data
         )
-
+        # Check that a valid note can then be created
         valid_response = self.client.post(
             "/notes/add",
             data={
@@ -116,7 +116,7 @@ class StudySparkTestCase(unittest.TestCase):
             b"Current confidence:",
             rating_response.data
         )
-
+ # Simulate potentially malicious input containing both a script tag and an SQL injection-style string
     def test_injection_strings_are_escaped_and_db_survives(self):
         malicious_input = (
             "<script>alert('x')</script>'; "
@@ -142,7 +142,7 @@ class StudySparkTestCase(unittest.TestCase):
             b"<script>alert('x')</script>",
             response.data
         )
-
+        # Create another note to confirm that the notes table was not damaged by the previous input.
         second_response = self.client.post(
             "/notes/add",
             data={

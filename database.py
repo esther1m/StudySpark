@@ -1,5 +1,7 @@
-import sqlite3
+# Database configuration
+# Creates the SQLite connection and initialises the tables required by the app
 
+import sqlite3
 
 def get_connection(database_path):
     connection = sqlite3.connect(database_path)
