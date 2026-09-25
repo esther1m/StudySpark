@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | StudySpark
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div>
+
+        <p class="eyebrow">
+            PERSONAL STUDY WORKSPACE
+        </p>
+
+        <h1>
+            Turn your study material into active revision.
+        </h1>
+
+        <p>
+            Keep notes and flashcards together in one simple
+            revision workspace.
+        </p>
+
+        <div class="button-row">
+
+            <a
+                class="button"
+                href="{{ url_for('add_note') }}"
+            >
+                Add note
+            </a>
+
+            <a
+                class="button secondary"
+                href="{{ url_for('add_flashcard') }}"
+            >
+                Create flashcard
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Study overview</h2>
+
+    <div class="statistics">
+
+        <article class="stat-card">
+            <span>{{ statistics.notes }}</span>
+            <p>Study notes</p>
+        </article>
+
+        <article class="stat-card">
+            <span>{{ statistics.flashcards }}</span>
+            <p>Flashcards</p>
+        </article>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="section-heading">
+
+        <h2>Recent notes</h2>
+
+        <a href="{{ url_for('notes') }}">
+            View all
+        </a>
+
+    </div>
+
+    {% if recent_notes %}
+
+        <div class="card-grid">
+
+            {% for note in recent_notes %}
+
+                <article class="card">
+
+                    <span class="tag">
+                        {{ note.subject }}
+                    </span>
+
+                    <h3>
+                        {{ note.title }}
+                    </h3>
+
+                    <p>
+                        {{ note.content[:160] }}
+                        {% if note.content|length > 160 %}
+                            ...
+                        {% endif %}
+                    </p>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h3>No notes yet</h3>
+
+            <p>
+                Create your first study note to begin.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

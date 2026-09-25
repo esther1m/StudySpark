@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+Notes | StudySpark
+{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+
+    <div>
+        <p class="eyebrow">STUDY LIBRARY</p>
+        <h1>Study notes</h1>
+    </div>
+
+    <a
+        class="button"
+        href="{{ url_for('add_note') }}"
+    >
+        + New note
+    </a>
+
+</div>
+
+<form
+    class="search-form"
+    method="GET"
+    action="{{ url_for('notes') }}"
+>
+
+    <input
+        type="search"
+        name="search"
+        placeholder="Search notes or subjects..."
+        value="{{ search_term }}"
+    >
+
+    <button
+        class="button"
+        type="submit"
+    >
+        Search
+    </button>
+
+</form>
+
+{% if notes %}
+
+    <div class="card-grid">
+
+        {% for note in notes %}
+
+            <article class="card">
+
+                <span class="tag">
+                    {{ note.subject }}
+                </span>
+
+                <h2>
+                    {{ note.title }}
+                </h2>
+
+                <p>
+                    {{ note.content }}
+                </p>
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'delete_note',
+                        note_id=note.id
+                    ) }}"
+                >
+
+                    <button
+                        class="delete-button"
+                        type="submit"
+                    >
+                        Delete
+                    </button>
+
+                </form>
+
+            </article>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty-state">
+
+        <h2>No notes found</h2>
+
+        <p>
+            Add a note or try another search.
+        </p>
+
+    </div>
+
+{% endif %}
+
+{% endblock %}
